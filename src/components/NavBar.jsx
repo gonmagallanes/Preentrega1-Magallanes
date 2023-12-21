@@ -3,25 +3,33 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import CartWidget from "./CartWidget";
+import { Link } from "react-router-dom";
+
+import { useGetCategory } from "../hooks/useProducts";
 
 const NavBar = () => {
+  const { categories } = useGetCategory();
+
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand href="#home" style={{ color: "red" }}>
-          Futura NBA Store
-        </Navbar.Brand>
+        <Link to={"/"} style={{ color: "red" }}>
+          Preentrega2-Magallanes 🌹
+        </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#link">Link</Nav.Link>
-            <NavDropdown title="Productos" id="basic-nav-dropdown">
-              <NavDropdown.Item>Camisetas</NavDropdown.Item>
-              <NavDropdown.Item>Zapatillas</NavDropdown.Item>
-              <NavDropdown.Item>Conjuntos</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item>WNBA</NavDropdown.Item>
+            
+            <NavDropdown title="Categorias" id="basic-nav-dropdown">
+              {categories.map((category, index) => {
+                return (
+                  <NavDropdown.ItemText key={index}>
+                    <Link to={`/category/${category}`}>
+                      {category}
+                    </Link>
+                  </NavDropdown.ItemText>
+                );
+              })}
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
