@@ -3,10 +3,7 @@ import { useParams } from "react-router-dom";
 
 import ItemListContainer from "../components/ItemListContainer";
 import {
-  useGetCategory,
   useGetCategoryProducts,
-  useGetProductById,
-  useGetProducts,
 } from "../hooks/useProducts";
 
 export const Category = () => {

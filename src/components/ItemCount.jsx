@@ -30,12 +30,29 @@ const ItemCount = () => {
           margin: "auto",
         }}
       >
-        <Button onClick={handleRemove}>-</Button>
+        <Button
+          style={{ backgroundColor: "red", border: "red" }}
+          onClick={handleRemove}
+        >
+          -
+        </Button>
         <span>{countItem}</span>
-        <Button onClick={handleAdd}>+</Button>
+        <Button
+          style={{ backgroundColor: "red", border: "red" }}
+          onClick={handleAdd}
+        >
+          +
+        </Button>
       </div>
 
       <Button
+        style={{
+          backgroundColor: "red",
+          border: "red",
+          display: "flex",
+          marginLeft: "50px",
+          marginTop: "20px   ",
+        }}
         onClick={() => {
           setCount(countItem + count);
           setCountItem(1);

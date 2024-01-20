@@ -1,38 +1,50 @@
-import React, { useEffect, useState } from "react";
-import { getCategoryProducts, getProductByCategory, getProductById, getProducts } from "../services/producteService";
+import { useEffect, useState } from "react";
+import {
+  getCategoryProducts,
+  getProductByCategory,
+  getProductById
+} from "../services/producteService";
+import {
+  collection,
+  getDocs,
+  doc,
+  getDoc,
+  getFirestore,
+} from "firebase/firestore";
 
-export const useGetProducts = () => {
+
+export const useGetCollectionDocuments = (collectionName = "finalProducts") => {
   const [productsData, setProductsData] = useState([]);
 
-  
   useEffect(() => {
-    setTimeout(() => {
-      getProducts(3)
-      .then((response) => {
-        setProductsData(response.data.products);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    }, 2000)
-    
+    const db = getFirestore();
+    const productsCollection = collection(db, collectionName);
+
+    getDocs(productsCollection).then((snapshot) => {
+      setProductsData(
+        snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data }))
+      );
+    });
   }, []);
-  return {productsData};
+
+
+  return { productsData };
 };
 
-export const useGetProductById = (id) => {
+export const useGetProductById = (collectionName= "finalProducts", id) => {
   const [productData, setProductData] = useState([]);
 
   useEffect(() => {
-    getProductById(id)
-      .then((response) => {
-        setProductData(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-  return {productData};
+    const db = getFirestore() ;
+
+    const docRef = doc(db, collectionName, id)
+
+    getDoc(docRef).then((doc) => {
+      setProductData({id: doc.id, ...doc.data() })
+    })
+  }, [id])
+  
+  return { productData };
 };
 
 export const useGetCategory = () => {
@@ -47,7 +59,7 @@ export const useGetCategory = () => {
         console.log(error);
       });
   }, []);
-  return {categories};
+  return { categories };
 };
 
 export const useGetCategoryProducts = (id) => {
@@ -62,5 +74,5 @@ export const useGetCategoryProducts = (id) => {
         console.log(error);
       });
   }, [id]);
-  return {productsData};
+  return { productsData };
 };

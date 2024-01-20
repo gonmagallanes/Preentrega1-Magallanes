@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import ItemListContainer from "../components/ItemListContainer";
-import { useGetProducts } from "../hooks/useProducts";
+import { useGetCollectionDocuments } from "../hooks/useProducts";
 
 export const Home = () => {
-  const { productsData } = useGetProducts();
+  const { productsData } = useGetCollectionDocuments();
   useEffect(() => {
     document.title = " Preentrega2 - Home";
   }, []);
