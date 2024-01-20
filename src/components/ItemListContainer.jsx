@@ -1,6 +1,9 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
+import ItemCount from "./ItemCount";
+import LoadingComponents from "./Loaders/LoadingComponents";
+
 
 const ItemListContainer = ({ productsData }) => {
   
@@ -14,7 +17,8 @@ const ItemListContainer = ({ productsData }) => {
           marginTop: "30px ",
         }}
       >
-        {productsData?.map((products) => {
+        {productsData.length <= 0 ? <LoadingComponents/> :
+        productsData?.map((products) => {
           return (
             <Card key={products.id} style={{ width: "18rem" }}>
               <Link to={`/item/${products.id}`}>
@@ -25,7 +29,8 @@ const ItemListContainer = ({ productsData }) => {
                 <Card.Title>{products.title}</Card.Title>
                 <Card.Text>{products.description}</Card.Text>
                 <div>{products.price}</div>
-                <Button variant="primary">Go somewhere</Button>
+                <ItemCount/>
+                
               </Card.Body>
             </Card>
           );

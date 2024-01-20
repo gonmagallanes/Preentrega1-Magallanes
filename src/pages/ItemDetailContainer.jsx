@@ -15,7 +15,7 @@ const ItemDetailContainer = () => {
         <Card.Title>{productData.title}</Card.Title>
         <Card.Text>{productData.description}</Card.Text>
         <div>{productData.price}</div>
-        <Button variant="primary">Go somewhere</Button>
+        <ItemCount/>
       </Card.Body>
     </Card>
   );

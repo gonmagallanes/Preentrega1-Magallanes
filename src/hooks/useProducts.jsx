@@ -4,14 +4,18 @@ import { getCategoryProducts, getProductByCategory, getProductById, getProducts 
 export const useGetProducts = () => {
   const [productsData, setProductsData] = useState([]);
 
+  
   useEffect(() => {
-    getProducts(3)
+    setTimeout(() => {
+      getProducts(3)
       .then((response) => {
         setProductsData(response.data.products);
       })
       .catch((error) => {
         console.log(error);
       });
+    }, 2000)
+    
   }, []);
   return {productsData};
 };
