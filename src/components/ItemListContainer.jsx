@@ -19,9 +19,9 @@ const ItemListContainer = ({ productsData }) => {
         {productsData.length <= 0 ? <LoadingComponents/> :
         productsData?.map((products) => {
           return (
-            <Card key={products.id} style={{ width: "18rem" }}>
+            <Card key={products.id} style={{ width: "18rem", height:'85vh' }}>
               <Link to={`/item/${products.id}`}>
-                <Card.Img style={{height:'30vh'}} variant="top" src={products.thumbnail} />
+                <Card.Img  variant="top" src={products.thumbnail} />
               </Link>
 
               <Card.Body>

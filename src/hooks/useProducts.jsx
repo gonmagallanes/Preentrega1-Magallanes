@@ -11,6 +11,8 @@ import {
   getFirestore,
 } from "firebase/firestore";
 
+
+
 export const useGetCollectionDocuments = (collectionName = "finalProducts") => {
   const [productsData, setProductsData] = useState([]);
 
@@ -46,8 +48,23 @@ export const useGetProductById = (collectionName = "finalProducts", id) => {
   return { productData };
 };
 
+export const useGetFBCategories = (collectionName = 'categories') => {
+  const [FBcategories, setFBCategories] = useState([]);
 
+  useEffect(() => {
+    const db = getFirestore();
+    const productsCollection = collection(db, collectionName);
 
+    getDocs(productsCollection).then((snapshot) => {
+      const categories = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setFBCategories(categories[0].categories);
+    });
+  }, []);
+  return { FBcategories };
+};
 
 export const useGetCategory = () => {
   const [categories, setCategories] = useState([]);
@@ -64,7 +81,6 @@ export const useGetCategory = () => {
   return { categories };
 };
 
-
 export const useGetCategoryProducts = (id) => {
   const [productsData, setProductsData] = useState([]);
 
@@ -79,6 +95,3 @@ export const useGetCategoryProducts = (id) => {
   }, [id]);
   return { productsData };
 };
-
-
-

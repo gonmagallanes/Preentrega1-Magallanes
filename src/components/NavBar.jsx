@@ -6,6 +6,7 @@ import CartWidget from "./CartWidget";
 import { Link } from "react-router-dom";
 
 import { useGetCategory } from "../hooks/useProducts";
+import { CreateProduct } from "../pages/CreateProduct";
 
 const NavBar = () => {
   const { categories } = useGetCategory();
@@ -33,6 +34,7 @@ const NavBar = () => {
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
+        <Link style={{marginRight:'20px'}} to='/create-product'>Crear Producto nuevo</Link>
         <CartWidget />
       </Container>
     </Navbar>
