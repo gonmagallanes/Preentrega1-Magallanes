@@ -3,7 +3,7 @@ import ItemListContainer from "../components/ItemListContainer";
 import { useGetCollectionDocuments } from "../hooks/useProducts";
 
 export const Home = () => {
-  const { productsData } = useGetCollectionDocuments();
+  const { productsData } = useGetCollectionDocuments('finalProducts');
   useEffect(() => {
     document.title = " Preentrega2 - Home";
   }, []);
