@@ -11,8 +11,6 @@ import {
   getFirestore,
 } from "firebase/firestore";
 
-
-
 export const useGetCollectionDocuments = (collectionName = "finalProducts") => {
   const [productsData, setProductsData] = useState([]);
 
@@ -48,7 +46,7 @@ export const useGetProductById = (collectionName = "finalProducts", id) => {
   return { productData };
 };
 
-export const useGetFBCategories = (collectionName = 'categories') => {
+export const useGetFBCategories = (collectionName = "categories") => {
   const [FBcategories, setFBCategories] = useState([]);
 
   useEffect(() => {
@@ -95,5 +93,3 @@ export const useGetCategoryProducts = (id) => {
   }, [id]);
   return { productsData };
 };
-
-
