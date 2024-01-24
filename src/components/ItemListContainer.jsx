@@ -4,6 +4,7 @@ import ItemCount from "./ItemCount";
 import LoadingComponents from "./Loaders/LoadingComponents";
 
 
+
 const ItemListContainer = ({ productsData }) => {
   
 
@@ -21,7 +22,7 @@ const ItemListContainer = ({ productsData }) => {
           return (
             <Card key={products.id} style={{ width: "18rem", height:'85vh' }}>
               <Link to={`/item/${products.id}`}>
-                <Card.Img  variant="top" src={products.thumbnail} />
+                <Card.Img variant="top" src={products.thumbnail} />
               </Link>
 
               <Card.Body>
